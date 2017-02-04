@@ -1,275 +1,405 @@
-<?php
-/**
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
- * @since         0.10.0
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
- */
-use Cake\Cache\Cache;
-use Cake\Core\Configure;
-use Cake\Core\Plugin;
-use Cake\Datasource\ConnectionManager;
-use Cake\Error\Debugger;
-use Cake\Network\Exception\NotFoundException;
-
-$this->layout = false;
-
-if (!Configure::read('debug')):
-    throw new NotFoundException('Please replace src/Template/Pages/home.ctp with your own version.');
-endif;
-
-$cakeDescription = 'CakePHP: the rapid development PHP framework';
-?>
 <!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
 <html>
 <head>
-    <?= $this->Html->charset() ?>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <?= $cakeDescription ?>
-    </title>
-    <?= $this->Html->meta('icon') ?>
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('cake.css') ?>
-    <?= $this->Html->css('home.css') ?>
-    <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>AdminLTE 2 | Starter</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.6 -->
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+        page. However, you can choose any other skin. Make sure you
+        apply the skin class to the body tag so the changes take effect.
+  -->
+  <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
 </head>
-<body class="home">
+<!--
+BODY TAG OPTIONS:
+=================
+Apply one or more of the following classes to get the
+desired effect
+|---------------------------------------------------------|
+| SKINS         | skin-blue                               |
+|               | skin-black                              |
+|               | skin-purple                             |
+|               | skin-yellow                             |
+|               | skin-red                                |
+|               | skin-green                              |
+|---------------------------------------------------------|
+|LAYOUT OPTIONS | fixed                                   |
+|               | layout-boxed                            |
+|               | layout-top-nav                          |
+|               | sidebar-collapse                        |
+|               | sidebar-mini                            |
+|---------------------------------------------------------|
+-->
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
 
-<header class="row">
-    <div class="header-image"><?= $this->Html->image('cake.logo.svg') ?></div>
-    <div class="header-title">
-        <h1>Welcome to CakePHP <?= Configure::version() ?> Red Velvet. Build fast. Grow solid.</h1>
-    </div>
-</header>
+  <!-- Main Header -->
+  <header class="main-header">
 
-<div class="row">
-    <div class="columns large-12">
-        <div class="ctp-warning alert text-center">
-            <p>Please be aware that this page will not be shown if you turn off debug mode unless you replace src/Template/Pages/home.ctp with your own version.</p>
-        </div>
-        <div id="url-rewriting-warning" class="alert url-rewriting">
-            <ul>
-                <li class="bullet problem">
-                    URL rewriting is not properly configured on your server.<br />
-                    1) <a target="_blank" href="http://book.cakephp.org/3.0/en/installation.html#url-rewriting">Help me configure it</a><br />
-                    2) <a target="_blank" href="http://book.cakephp.org/3.0/en/development/configuration.html#general-configuration">I don't / can't use URL rewriting</a>
-                </li>
+    <!-- Logo -->
+    <a href="index2.html" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini"><b>A</b>LT</span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b>Admin</b>LTE</span>
+    </a>
+
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top" role="navigation">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+      <!-- Navbar Right Menu -->
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <!-- Messages: style can be found in dropdown.less-->
+          <li class="dropdown messages-menu">
+            <!-- Menu toggle button -->
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-envelope-o"></i>
+              <span class="label label-success">4</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">You have 4 messages</li>
+              <li>
+                <!-- inner menu: contains the messages -->
+                <ul class="menu">
+                  <li><!-- start message -->
+                    <a href="#">
+                      <div class="pull-left">
+                        <!-- User Image -->
+                        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                      </div>
+                      <!-- Message title and timestamp -->
+                      <h4>
+                        Support Team
+                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                      </h4>
+                      <!-- The message -->
+                      <p>Why not buy a new awesome theme?</p>
+                    </a>
+                  </li>
+                  <!-- end message -->
+                </ul>
+                <!-- /.menu -->
+              </li>
+              <li class="footer"><a href="#">See All Messages</a></li>
             </ul>
+          </li>
+          <!-- /.messages-menu -->
+
+          <!-- Notifications Menu -->
+          <li class="dropdown notifications-menu">
+            <!-- Menu toggle button -->
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-bell-o"></i>
+              <span class="label label-warning">10</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">You have 10 notifications</li>
+              <li>
+                <!-- Inner Menu: contains the notifications -->
+                <ul class="menu">
+                  <li><!-- start notification -->
+                    <a href="#">
+                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                    </a>
+                  </li>
+                  <!-- end notification -->
+                </ul>
+              </li>
+              <li class="footer"><a href="#">View all</a></li>
+            </ul>
+          </li>
+          <!-- Tasks Menu -->
+          <li class="dropdown tasks-menu">
+            <!-- Menu Toggle Button -->
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-flag-o"></i>
+              <span class="label label-danger">9</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">You have 9 tasks</li>
+              <li>
+                <!-- Inner menu: contains the tasks -->
+                <ul class="menu">
+                  <li><!-- Task item -->
+                    <a href="#">
+                      <!-- Task title and progress text -->
+                      <h3>
+                        Design some buttons
+                        <small class="pull-right">20%</small>
+                      </h3>
+                      <!-- The progress bar -->
+                      <div class="progress xs">
+                        <!-- Change the css width attribute to simulate progress -->
+                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                          <span class="sr-only">20% Complete</span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <!-- end task item -->
+                </ul>
+              </li>
+              <li class="footer">
+                <a href="#">View all tasks</a>
+              </li>
+            </ul>
+          </li>
+          <!-- User Account Menu -->
+          <li class="dropdown user user-menu">
+            <!-- Menu Toggle Button -->
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <!-- The user image in the navbar-->
+              <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <!-- hidden-xs hides the username on small devices so only the image appears. -->
+              <span class="hidden-xs">Alexander Pierce</span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- The user image in the menu -->
+              <li class="user-header">
+                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+
+                <p>
+                  Alexander Pierce - Web Developer
+                  <small>Member since Nov. 2012</small>
+                </p>
+              </li>
+              <!-- Menu Body -->
+              <li class="user-body">
+                <div class="row">
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Followers</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Sales</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Friends</a>
+                  </div>
+                </div>
+                <!-- /.row -->
+              </li>
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-left">
+                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                </div>
+                <div class="pull-right">
+                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <!-- Control Sidebar Toggle Button -->
+          <li>
+            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
-        <?php Debugger::checkSecurityKeys(); ?>
+        <div class="pull-left info">
+          <p>Alexander Pierce</p>
+          <!-- Status -->
+          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+      </div>
+
+      <!-- search form (Optional) -->
+      <form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Search...">
+              <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+        </div>
+      </form>
+      <!-- /.search form -->
+
+      <!-- Sidebar Menu -->
+      <ul class="sidebar-menu">
+        <li class="header">HEADER</li>
+        <!-- Optionally, you can add icons to the links -->
+        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
+        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#">Link in level 2</a></li>
+            <li><a href="#">Link in level 2</a></li>
+          </ul>
+        </li>
+      </ul>
+      <!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Page Header
+        <small>Optional description</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+        <li class="active">Here</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Your Page Content Here -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <!-- To the right -->
+    <div class="pull-right hidden-xs">
+      Anything you want
     </div>
+    <!-- Default to the left -->
+    <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Create the tabs -->
+    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+      <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <!-- Home tab content -->
+      <div class="tab-pane active" id="control-sidebar-home-tab">
+        <h3 class="control-sidebar-heading">Recent Activity</h3>
+        <ul class="control-sidebar-menu">
+          <li>
+            <a href="javascript:;">
+              <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+                <p>Will be 23 on April 24th</p>
+              </div>
+            </a>
+          </li>
+        </ul>
+        <!-- /.control-sidebar-menu -->
+
+        <h3 class="control-sidebar-heading">Tasks Progress</h3>
+        <ul class="control-sidebar-menu">
+          <li>
+            <a href="javascript:;">
+              <h4 class="control-sidebar-subheading">
+                Custom Template Design
+                <span class="pull-right-container">
+                  <span class="label label-danger pull-right">70%</span>
+                </span>
+              </h4>
+
+              <div class="progress progress-xxs">
+                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+              </div>
+            </a>
+          </li>
+        </ul>
+        <!-- /.control-sidebar-menu -->
+
+      </div>
+      <!-- /.tab-pane -->
+      <!-- Stats tab content -->
+      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+      <!-- /.tab-pane -->
+      <!-- Settings tab content -->
+      <div class="tab-pane" id="control-sidebar-settings-tab">
+        <form method="post">
+          <h3 class="control-sidebar-heading">General Settings</h3>
+
+          <div class="form-group">
+            <label class="control-sidebar-subheading">
+              Report panel usage
+              <input type="checkbox" class="pull-right" checked>
+            </label>
+
+            <p>
+              Some information about this general settings option
+            </p>
+          </div>
+          <!-- /.form-group -->
+        </form>
+      </div>
+      <!-- /.tab-pane -->
+    </div>
+  </aside>
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
 </div>
+<!-- ./wrapper -->
 
-<div class="row">
-    <div class="columns large-6">
-        <h4>Environment</h4>
-        <ul>
-        <?php if (version_compare(PHP_VERSION, '5.5.9', '>=')): ?>
-            <li class="bullet success">Your version of PHP is 5.5.9 or higher (detected <?= PHP_VERSION ?>).</li>
-        <?php else: ?>
-            <li class="bullet problem">Your version of PHP is too low. You need PHP 5.5.9 or higher to use CakePHP (detected <?= PHP_VERSION ?>).</li>
-        <?php endif; ?>
+<!-- REQUIRED JS SCRIPTS -->
 
-        <?php if (extension_loaded('mbstring')): ?>
-            <li class="bullet success">Your version of PHP has the mbstring extension loaded.</li>
-        <?php else: ?>
-            <li class="bullet problem">Your version of PHP does NOT have the mbstring extension loaded.</li>;
-        <?php endif; ?>
+<!-- jQuery 2.2.3 -->
+<script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/app.min.js"></script>
 
-        <?php if (extension_loaded('openssl')): ?>
-            <li class="bullet success">Your version of PHP has the openssl extension loaded.</li>
-        <?php elseif (extension_loaded('mcrypt')): ?>
-            <li class="bullet success">Your version of PHP has the mcrypt extension loaded.</li>
-        <?php else: ?>
-            <li class="bullet problem">Your version of PHP does NOT have the openssl or mcrypt extension loaded.</li>
-        <?php endif; ?>
-
-        <?php if (extension_loaded('intl')): ?>
-            <li class="bullet success">Your version of PHP has the intl extension loaded.</li>
-        <?php else: ?>
-            <li class="bullet problem">Your version of PHP does NOT have the intl extension loaded.</li>
-        <?php endif; ?>
-        </ul>
-    </div>
-    <div class="columns large-6">
-        <h4>Filesystem</h4>
-        <ul>
-        <?php if (is_writable(TMP)): ?>
-            <li class="bullet success">Your tmp directory is writable.</li>
-        <?php else: ?>
-            <li class="bullet problem">Your tmp directory is NOT writable.</li>
-        <?php endif; ?>
-
-        <?php if (is_writable(LOGS)): ?>
-            <li class="bullet success">Your logs directory is writable.</li>
-        <?php else: ?>
-            <li class="bullet problem">Your logs directory is NOT writable.</li>
-        <?php endif; ?>
-
-        <?php $settings = Cache::config('_cake_core_'); ?>
-        <?php if (!empty($settings)): ?>
-            <li class="bullet success">The <em><?= $settings['className'] ?>Engine</em> is being used for core caching. To change the config edit config/app.php</li>
-        <?php else: ?>
-            <li class="bullet problem">Your cache is NOT working. Please check the settings in config/app.php</li>
-        <?php endif; ?>
-        </ul>
-    </div>
-    <hr />
-</div>
-
-<div class="row">
-    <div class="columns large-6">
-        <h4>Database</h4>
-        <?php
-        try {
-            $connection = ConnectionManager::get('default');
-            $connected = $connection->connect();
-        } catch (Exception $connectionError) {
-            $connected = false;
-            $errorMsg = $connectionError->getMessage();
-            if (method_exists($connectionError, 'getAttributes')):
-                $attributes = $connectionError->getAttributes();
-                if (isset($errorMsg['message'])):
-                    $errorMsg .= '<br />' . $attributes['message'];
-                endif;
-            endif;
-        }
-        ?>
-        <ul>
-        <?php if ($connected): ?>
-            <li class="bullet success">CakePHP is able to connect to the database.</li>
-        <?php else: ?>
-            <li class="bullet problem">CakePHP is NOT able to connect to the database.<br /><?= $errorMsg ?></li>
-        <?php endif; ?>
-        </ul>
-    </div>
-    <div class="columns large-6">
-        <h4>DebugKit</h4>
-        <ul>
-        <?php if (Plugin::loaded('DebugKit')): ?>
-            <li class="bullet success">DebugKit is loaded.</li>
-        <?php else: ?>
-            <li class="bullet problem">DebugKit is NOT loaded. You need to either install pdo_sqlite, or define the "debug_kit" connection name.</li>
-        <?php endif; ?>
-        </ul>
-    </div>
-    <hr />
-</div>
-
-<div class="row">
-    <div class="columns large-6">
-        <h3>Editing this Page</h3>
-        <ul>
-            <li class="bullet cutlery">To change the content of this page, edit: src/Template/Pages/home.ctp.</li>
-            <li class="bullet cutlery">You can also add some CSS styles for your pages at: webroot/css/.</li>
-        </ul>
-    </div>
-    <div class="columns large-6">
-        <h3>Getting Started</h3>
-        <ul>
-            <li class="bullet book"><a target="_blank" href="http://book.cakephp.org/3.0/en/">CakePHP 3.0 Docs</a></li>
-            <li class="bullet book"><a target="_blank" href="http://book.cakephp.org/3.0/en/tutorials-and-examples/bookmarks/intro.html">The 15 min Bookmarker Tutorial</a></li>
-            <li class="bullet book"><a target="_blank" href="http://book.cakephp.org/3.0/en/tutorials-and-examples/blog/blog.html">The 15 min Blog Tutorial</a></li>
-        </ul>
-        <p>
-    </div>
-</div>
-
-<div class="row">
-    <div class="columns large-12 text-center">
-        <h3 class="more">More about Cake</h3>
-        <p>
-            CakePHP is a rapid development framework for PHP which uses commonly known design patterns like Front Controller and MVC.<br />
-            Our primary goal is to provide a structured framework that enables PHP users at all levels to rapidly develop robust web applications, without any loss to flexibility.
-        </p>
-    </div>
-    <hr/>
-</div>
-
-<div class="row">
-    <div class="columns large-4">
-        <i class="icon support">P</i>
-        <h3>Help and Bug Reports</h3>
-        <ul>
-            <li class="bullet cutlery">
-                <a href="irc://irc.freenode.net/cakephp">irc.freenode.net #cakephp</a>
-                <ul><li>Live chat about CakePHP</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="https://github.com/cakephp/cakephp/issues">CakePHP Issues</a>
-                <ul><li>CakePHP issues and pull requests</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="http://discourse.cakephp.org/">CakePHP Forum</a>
-                <ul><li>CakePHP official discussion forum</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="https://groups.google.com/group/cake-php">CakePHP Google Group</a>
-                <ul><li>Community mailing list</li></ul>
-            </li>
-        </ul>
-    </div>
-    <div class="columns large-4">
-        <i class="icon docs">r</i>
-        <h3>Docs and Downloads</h3>
-        <ul>
-            <li class="bullet cutlery">
-                <a href="http://api.cakephp.org/3.0/">CakePHP API</a>
-                <ul><li>Quick Reference</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="http://book.cakephp.org/3.0/en/">CakePHP Documentation</a>
-                <ul><li>Your Rapid Development Cookbook</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="http://bakery.cakephp.org">The Bakery</a>
-                <ul><li>Everything CakePHP</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="http://plugins.cakephp.org">CakePHP plugins repo</a>
-                <ul><li>A comprehensive list of all CakePHP plugins created by the community</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="https://github.com/cakephp/">CakePHP Code</a>
-                <ul><li>For the Development of CakePHP Git repository, Downloads</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="https://github.com/FriendsOfCake/awesome-cakephp">CakePHP Awesome List</a>
-                <ul><li>A curated list of amazingly awesome CakePHP plugins, resources and shiny things.</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="http://www.cakephp.org">CakePHP</a>
-                <ul><li>The Rapid Development Framework</li></ul>
-            </li>
-        </ul>
-    </div>
-    <div class="columns large-4">
-        <i class="icon training">s</i>
-        <h3>Training and Certification</h3>
-        <ul>
-            <li class="bullet cutlery">
-                <a href="http://cakefoundation.org/">Cake Software Foundation</a>
-                <ul><li>Promoting development related to CakePHP</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="http://training.cakephp.org/">CakePHP Training</a>
-                <ul><li>Learn to use the CakePHP framework</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="http://certification.cakephp.org/">CakePHP Certification</a>
-                <ul><li>Become a certified CakePHP developer</li></ul>
-            </li>
-        </ul>
-    </div>
-</div>
-
+<!-- Optionally, you can add Slimscroll and FastClick plugins.
+     Both of these plugins are recommended to enhance the
+     user experience. Slimscroll is required when using the
+     fixed layout. -->
 </body>
 </html>
