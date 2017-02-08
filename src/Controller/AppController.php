@@ -52,6 +52,22 @@ class AppController extends Controller
                             'username'=>'email',
                             'password'=>'password'
                         ]
+                    ],
+                    'ADmad/HybridAuth.HybridAuth' => [
+                        // All keys shown below are defaults
+                        'fields' => [
+                            'provider' => 'provider',
+                            'openid_identifier' => 'openid_identifier',
+                            'email' => 'email'
+                        ],
+                        'profileModel' => 'ADmad/HybridAuth.SocialProfiles',
+                        'profileModelFkField' => 'user_id',
+
+                        // The URL Hybridauth lib should redirect to after authentication.
+                        // If no value is specified you are redirect to this plugin's
+                        // HybridAuthController::authenticated() which handles persisting
+                        // user info to AuthComponent and redirection.
+                        'hauth_return_to' => 'users/login?provider=provider'
                     ]
                 ],
 
